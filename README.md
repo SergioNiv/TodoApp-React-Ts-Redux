@@ -2,7 +2,7 @@
 
 ## descripción
 
-Implementando tipado en aplicaciones con el patrón redux
+Implementando tipado en aplicaciones con el patrón redux y permanencia de datos en localStorage
 
 ## Instalación
 
@@ -24,4 +24,4 @@ npm i bootswatch
 
 ## Link del proyecto
 
-[TodoApp](https://choosealicense.com/licenses/mit/)
+[TodoApp](https://sergioniv.github.io/TodoApp-React-Ts-Redux/)
