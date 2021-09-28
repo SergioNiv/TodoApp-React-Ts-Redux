@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import { todoAdd } from '../actions/todo';
 import { DispatchType } from '../interfaces/interfaces';
 
@@ -9,14 +9,20 @@ type Args = {
 export const TodoAddNew = ({ dispatch }: Args) => {
 	const [formValue, setFormValue] = useState('');
 
+	const todoRef = useRef<HTMLInputElement>(null); //guardar el foco del input como  referencia
+
 	const handleOnchange = ({ target }: ChangeEvent<HTMLInputElement>) => {
 		setFormValue(target.value);
 	};
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		dispatch(todoAdd({ name: formValue, toggleComplete: false }));
-		setFormValue('');
+
+		if (formValue.trim().length > 0) {
+			dispatch(todoAdd({ name: formValue, toggleComplete: false }));
+			setFormValue('');
+			todoRef.current?.focus();
+		}
 	};
 
 	return (
@@ -30,6 +36,7 @@ export const TodoAddNew = ({ dispatch }: Args) => {
 					onChange={handleOnchange}
 					value={formValue}
 					autoFocus
+					ref={todoRef}
 				/>
 
 				<button type="submit" className="btn btn-success mt-4 ">
