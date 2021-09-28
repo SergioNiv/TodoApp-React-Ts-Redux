@@ -27,11 +27,10 @@ export const todoReducer = (
 			};
 
 		case 'Delete Todo':
+			state.todos.splice(action.payload.idx, 1); //Nota: este método modifica el array de origen
 			return {
 				...state,
-				todos: state.todos.filter(
-					(todo, i) => state.todos[i] !== state.todos[action.payload.idx]
-				),
+				todos: [...state.todos],
 			};
 		default:
 			return state;
